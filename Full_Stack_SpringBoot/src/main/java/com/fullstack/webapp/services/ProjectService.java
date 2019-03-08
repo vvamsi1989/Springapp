@@ -1,5 +1,6 @@
 package com.fullstack.webapp.services;
 
+import com.fullstack.webapp.exceptions.ProjectIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.fullstack.webapp.repositories.ProjectRepository;
 import com.fullstack.webapp.domain.Project;
@@ -14,9 +15,13 @@ public class ProjectService {
     public Project saveOrUpdateProject(Project project){
 
         //Logic
-
-        return projectRepository.save(project);
-
+        try {
+            project.setProjectIdentifier(project.getprojectIdentifier().toUpperCase());
+            return projectRepository.save(project);
+        }
+        catch (Exception e){
+            throw new ProjectIdException("Project ID" + project.getprojectIdentifier().toUpperCase()+ " already exists");
+        }
     }
 }
 
