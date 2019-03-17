@@ -6,7 +6,7 @@ class Dashboard extends Component {
     return (
       <div>
         <Header />
-        <h1>Welcome to the Dashboard</h1>
+        <h1>Welcome to the Dashboard of PPM Tool</h1>
         <ProjectItem />
       </div>
     );
